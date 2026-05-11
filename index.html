@@ -94,17 +94,40 @@ color:#666;
 
 <section class="hero"
 style="
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),
-url('IMG_20260225_111900044_HDR.jpg');
-
-background-size:cover;
-background-position:center;
+position:relative;
+overflow:hidden;
 min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
+align-items:center;
 ">
+
+<video autoplay muted loop playsinline
+style="
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+">
+
+<source src="VID_20260226_101040408.mp4" type="video/mp4">
+
+</video>
+
+<div style="
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+z-index:-1;
+"></div>
+  
 
 <h1>Iguanas Adventure</h1>
 
