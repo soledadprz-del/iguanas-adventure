@@ -1,48 +1,61 @@
+
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Iguanas Adventure</title>
 
 <style>
 
 body{
 margin:0;
-background:
-linear-gradient(
-180deg,
-#000000,
-#0a0a0a,
-#111111,
-#1a1a1a
-);
-
+background:linear-gradient(180deg,#000000,#0a0a0a,#111111,#1a1a1a);
 color:white;
-font-family:Arial;
+font-family:Arial,sans-serif;
 text-align:center;
 overflow-x:hidden;
 }
 
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.85);
+padding:15px;
+z-index:999;
+backdrop-filter:blur(10px);
+}
+
+nav div{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
 
 .hero{
 padding:140px 20px 80px 20px;
 }
-  
 
 h1{
-font-size:60px;
+font-size:55px;
 color:#ff7b00;
 }
 
 p{
 color:#cccccc;
-font-size:22px;
-max-width:800px;
+font-size:20px;
+max-width:850px;
 margin:auto;
+line-height:1.7;
 }
 
 .buttons{
@@ -64,45 +77,43 @@ box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 
 .btn:hover{
-transform:scale(1.06);
+transform:scale(1.05);
 box-shadow:0 0 30px rgba(255,123,0,0.5);
 }
-  
 
 .whatsapp{
-background:
-linear-gradient(
-45deg,
-#1ebe5d,
-#25D366
-);
+background:linear-gradient(45deg,#1ebe5d,#25D366);
 }
 
 .call{
-background:
-linear-gradient(
-45deg,
-#ff5e00,
-#ff9100
-);
+background:linear-gradient(45deg,#ff5e00,#ff9100);
 }
-  
 
 .section{
-padding:60px 20px;
+padding:70px 20px;
 }
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:40px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+padding:20px;
+max-width:1200px;
+margin:auto;
 }
 
 .card{
-background:#111;
+background:rgba(255,255,255,0.05);
 padding:30px;
-border-radius:20px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 25px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
 }
 
 .card img{
@@ -112,70 +123,216 @@ margin-bottom:15px;
 }
 
 footer{
-margin-top:80px;
+margin-top:60px;
 padding:30px;
-color:#666;
+color:#777;
 }
 
 </style>
-
 </head>
 
 <body>
-<nav style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:rgba(0,0,0,0.85);
-padding:15px;
-z-index:999;
-backdrop-filter:blur(10px);
-">
 
-<div style="
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
-">
+<nav>
+<div>
+<a href="#">Inicio</a>
+<a href="#">Tours</a>
+<a href="#">Vehículos</a>
+<a href="#">Reservas</a>
+<a href="https://wa.me/523223694727" style="color:#25D366;">WhatsApp</a>
+</div>
+</nav>
 
-<a href="#"
-style="
-color:white;
-text-decoration:none;
-font-weight:bold;
-">
-Inicio </a>
+<section class="hero">
 
-<a href="#"
-style="
-color:white;
-text-decoration:none;
-font-weight:bold;
-">
-Reservas </a>
+<h1>Iguanas Adventure</h1>
 
-<a href="https://wa.me/523223694727"
-style="
-color:#25D366;
-text-decoration:none;
-font-weight:bold;
-">
-WhatsApp </a>
+<p>
+Renta premium de RZR y Can-Am en Bahía de Banderas.
+Tours privados, lodadas extremas y aventuras inolvidables.
+</p>
+
+<div class="buttons">
+
+<a class="btn whatsapp" href="https://wa.me/523223694727">
+Reservar por WhatsApp
+</a>
+
+<a class="btn call" href="tel:+523223694727">
+Llamar Ahora
+</a>
 
 </div>
 
-</nav>
+</section>
+
+<section class="section">
+
+<h1>Experiencia Off-Road Premium</h1>
+
+<p>
+Explora montañas, lodadas y rutas panorámicas de Bahía de Banderas a bordo de nuestros vehículos premium.
+Disfruta recorridos guiados o paseos libres a tu ritmo.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>🏔 Ruta de Montaña</h2>
+<p>Recorre caminos panorámicos y vistas increíbles.</p>
+</div>
+
+<div class="card">
+<h2>💦 Ruta Lodadas</h2>
+<p>Barro, adrenalina y aventura extrema off-road.</p>
+</div>
+
+<div class="card">
+<h2>🌅 Sunset Adventure</h2>
+<p>Atardeceres épicos entre montaña y playa.</p>
+</div>
+
+<div class="card">
+<h2>🛞 Paseo Libre</h2>
+<p>Maneja a tu ritmo y explora Bahía de Banderas.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h1>Nuestros Vehículos</h1>
+
+<div class="cards">
+
+<div class="card">
+<img src="IMG_20260225_111900044_HDR.jpg">
+<h2>Commander Camouflage</h2>
+<p>4 plazas • Premium Off-Road</p>
+</div>
+
+<div class="card">
+<img src="IMG_20260225_111906064_HDR.jpg">
+<h2>Can-Am Defender</h2>
+<p>Perfecto para aventura y ruta</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h1>Detalles de la Reserva</h1>
+
+<div class="cards">
+
+<div class="card">
+<h2>Commander 4 Plazas</h2>
+<p>$4,500 MXN • 4 Horas</p>
+<p>Tour guiado o libre</p>
+<a href="https://wa.me/523223694727" class="btn whatsapp">Reservar</a>
+</div>
+
+<div class="card">
+<h2>RZR 3 Plazas</h2>
+<p>$3,500 MXN • 4 Horas</p>
+<p>Tour guiado o libre</p>
+<a href="https://wa.me/523223694727" class="btn whatsapp">Reservar</a>
+</div>
+
+<div class="card">
+<h2>Ruta Lodadas Premium</h2>
+<p>Desde $4,800 MXN</p>
+<p>Barro • montaña • adrenalina</p>
+<a href="https://wa.me/523223694727" class="btn whatsapp">Reservar</a>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h1>¿Qué Incluye?</h1>
+
+<div class="cards">
+
+<div class="card">
+<h2>✅ Incluye</h2>
+<p>
+• Vehículo RZR / Can-Am<br><br>
+• Casco<br><br>
+• Guía turístico<br><br>
+• Gasolina<br><br>
+• Fotos y videos<br><br>
+• Ruta off-road
+</p>
+</div>
+
+<div class="card">
+<h2>❌ No Incluye</h2>
+<p>
+• Alcohol<br><br>
+• Daños extremos al vehículo<br><br>
+• Transporte al punto de salida<br><br>
+• Propinas
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h1>Opiniones de Clientes</h1>
+
+<p>⭐ 5.0 • Experiencias increíbles en Bahía de Banderas</p>
+
+<div class="cards">
+
+<div class="card">
+<h2>⭐⭐⭐⭐⭐</h2>
+<p>“Increíble experiencia. Las lodadas estuvieron brutales y los RZR están impecables.”</p>
+<h3>— Michael, USA</h3>
+</div>
+
+<div class="card">
+<h2>⭐⭐⭐⭐⭐</h2>
+<p>“El mejor tour de aventura en Puerto Vallarta. Volveríamos mil veces.”</p>
+<h3>— Jessica & Ryan</h3>
+</div>
+
+<div class="card">
+<h2>⭐⭐⭐⭐⭐</h2>
+<p>“Los vehículos se sienten premium y el recorrido fue espectacular.”</p>
+<h3>— Carlos, México</h3>
+</div>
+
+</div>
+
+</section>
 
 <footer>
-© 2026 Iguanas Adventure • Bahía de Banderas
-</footer>
-  
-  
 © 2026 Iguanas Adventure • Bahía de Banderas
 </footer>
 
 </body>
 </html>
+```
 
+# Cómo arreglar todo
+
+1. Abre `index.html`
+2. Toca `⋮`
+3. Toca `✏️ Editar`
+4. Borra TODO
+5. Pega TODO este código
+6. Presiona `Commit changes`
+7. Espera 20 segundos
+8. Abre tu página
+
+Y ya quedará limpia y premium otra vez 😄🔥
