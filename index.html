@@ -9,14 +9,7 @@
 
 body{
 margin:0;
-background:
-linear-gradient(
-180deg,
-#1b1f16,
-#2d3325,
-#44513b,
-#161814
-);
+background:linear-gradient(180deg,#000000,#0a0a0a,#111111,#1a1a1a);
 color:white;
 font-family:Arial,sans-serif;
 text-align:center;
@@ -326,7 +319,17 @@ Disfruta recorridos guiados o paseos libres a tu ritmo.
 © 2026 Iguanas Adventure • Bahía de Banderas
 </footer>
 
+<audio id="engineSound" autoplay>
+<source src="motor.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener('click', () => {
+const audio = document.getElementById('engineSound');
+audio.play();
+}, { once:true });
+</script>
+
 </body>
 </html>
 ```
-
