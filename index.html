@@ -151,9 +151,35 @@ color:#777;
 
   <label>Tipo de reserva:</label>
   <select id="tipoReserva" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px;">
-    if (tipoReserva === "Tour guiado") {
+  
+if (tipoReserva === "Tour guiado") {
 
-  total = 2200* duracion;
+  // TOUR GUIADO COMMANDER
+  if (vehiculo === "Commander") {
+    total = 2100 * duracion;
+  }
+
+  // TOUR GUIADO DEFENDER
+  if (vehiculo === "Defender") {
+    total = 1800 * duracion;
+  }
+
+  // DESCUENTO ARRIBA DE 5 HORAS
+  if (duracion > 5) {
+
+    total = total * 0.70;
+
+    document.getElementById("descuentoTexto").innerHTML =
+      "🔥 Descuento especial del 30% aplicado";
+
+  } else {
+
+    document.getElementById("descuentoTexto").innerHTML =
+      "✅ Tour guiado";
+
+  }
+
+}
     <option>Renta por horas</option>
     <option>Tiempo libre</option>
   </select>
