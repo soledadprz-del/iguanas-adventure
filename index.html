@@ -181,7 +181,46 @@ color:#777;
     </p>
   </div>
 </section>
+<div style="margin-top:25px; background:#111; padding:20px; border-radius:12px; max-height:250px; overflow-y:auto; font-size:14px; line-height:1.6;">
 
+<h3 style="color:#f4c430;">Términos y Condiciones</h3>
+
+<p><strong>1. Reservaciones y Pagos</strong><br>
+Todas las reservaciones requieren un anticipo para ser confirmadas.<br>
+El anticipo corresponde al monto indicado en la reservación y deberá realizarse mediante pago en línea o transferencia autorizada.<br>
+El resto del pago deberá liquidarse antes de iniciar el tour.</p>
+
+<p><strong>2. Políticas de Cancelación</strong><br>
+Cancelaciones con más de 48 horas de anticipación podrán reprogramarse sin penalización.<br>
+Cancelaciones con menos de 48 horas podrán perder el anticipo.<br>
+En caso de clima extremo o causas operativas, la empresa podrá reprogramar la experiencia.</p>
+
+<p><strong>3. Responsabilidad del Cliente</strong><br>
+El conductor deberá presentar identificación oficial vigente y aceptar la carta responsiva antes de iniciar la actividad.<br>
+El cliente acepta participar bajo su propia responsabilidad y seguir todas las instrucciones de seguridad.</p>
+
+<p><strong>4. Restricciones</strong><br>
+No podrán conducir personas bajo efectos de alcohol, drogas o sustancias que afecten la capacidad de manejo.<br>
+La empresa podrá cancelar el tour sin reembolso si detecta conducta peligrosa.</p>
+
+<p><strong>5. Daños y Uso del Vehículo</strong><br>
+El cliente será responsable por daños ocasionados por mal uso, negligencia o incumplimiento de instrucciones.<br>
+Cualquier daño podrá generar cargos adicionales.</p>
+
+<p><strong>6. Seguridad</strong><br>
+El uso de casco y equipo de seguridad es obligatorio durante toda la experiencia.</p>
+
+<p><strong>7. Aceptación</strong><br>
+Al realizar la reservación y pago, el cliente acepta automáticamente estos términos y condiciones.</p>
+
+</div>
+
+<div style="margin-top:15px; display:flex; align-items:center; gap:10px;">
+  <input type="checkbox" id="acepto">
+  <label for="acepto" style="font-size:14px;">
+    He leído y acepto los términos y condiciones.
+  </label>
+</div>
 <script>
 function confirmarReserva() {
   const nombre = document.getElementById("nombre").value;
@@ -191,7 +230,9 @@ function confirmarReserva() {
   const vehiculo = document.getElementById("vehiculo").value;
   const personas = document.getElementById("personas").value;
 
-  if (!nombre || !telefono || !fecha || !hora || !vehiculo || !personas) {
+  const acepto = document.getElementById("acepto").checked;
+
+if (!nombre || !telefono || !fecha || !hora || !vehiculo || !personas || !acepto) {
     alert("Por favor llena todos los campos para continuar.");
     return;
   }
