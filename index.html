@@ -128,13 +128,18 @@ color:#777;
 }
 
 </style>
-</head>
-  <section id="reservas" style="padding:40px 20px; background:#263626; color:white; font-family:Arial, sans-serif; text-align:center;">
+</head>  
+<body>
+<section id="reservas" class="section" style="background:#263626; color:white;">
 
-  <h2 style="color:#f4c430;">Reserva tu Aventura</h2>
+  <h1 style="color:#f4c430;">Reserva tu Aventura</h1>
+
+  <label>Fecha:</label>
+  <input id="fecha" type="date" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px;">
 
   <label>Horario:</label>
   <select id="hora" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px;">
+    <option value="">Selecciona horario</option>
     <option>9:00 AM</option>
     <option>11:00 AM</option>
     <option>1:00 PM</option>
@@ -150,38 +155,11 @@ color:#777;
   </select>
 
   <label>Tipo de reserva:</label>
-  <select id="tipoReserva" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px;">
-  
-if (tipoReserva === "Tour guiado") {
-
-  // TOUR GUIADO COMMANDER
-  if (vehiculo === "Commander") {
-    total = 2100 * duracion;
-  }
-
-  // TOUR GUIADO DEFENDER
-  if (vehiculo === "Defender") {
-    total = 1800 * duracion;
-  }
-
-  // DESCUENTO ARRIBA DE 5 HORAS
-  if (duracion > 5) {
-
-    total = total * 0.70;
-
-    document.getElementById("descuentoTexto").innerHTML =
-      "🔥 Descuento especial del 30% aplicado";
-
-  } else {
-
-    document.getElementById("descuentoTexto").innerHTML =
-      "✅ Tour guiado";
-
-  }
-
-}
-    <option>Renta por horas</option>
-    <option>Tiempo libre</option>
+  <select id="tipoReserva" onchange="actualizarPrecio()" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px;">
+    <option value="">Selecciona modalidad</option>
+    <option value="Tour guiado">Tour guiado</option>
+    <option value="Renta por horas">Renta por horas</option>
+    <option value="Tiempo libre">Tiempo libre</option>
   </select>
 
   <label>Duración:</label>
@@ -197,21 +175,18 @@ if (tipoReserva === "Tour guiado") {
   </select>
 
   <label>Número de personas:</label>
-  <input id="personas" type="number" min="1" max="4" style="width:100%; padding:12px; margin:8px 0 20px; border-radius:8px; border:none;">
+  <input id="personas" type="number" min="1" max="4" style="width:100%; padding:12px; margin:8px 0 20px; border-radius:8px;">
 
   <div style="background:#111; padding:20px; border-radius:16px; margin:20px 0;">
     <h3 style="color:#f4c430;">Resumen de reserva</h3>
     <p>Precio estimado:</p>
     <p id="precioFinal" style="font-size:32px; font-weight:bold; color:#f4c430;">$0 MXN</p>
     <p id="descuentoTexto" style="color:#7CFC00; font-weight:bold;"></p>
-    <small>
-      Reservas mínimas de 2 horas.<br>
-      Más de 5 horas reciben 30% de descuento especial.
-    </small>
+    <small>Más de 5 horas reciben 30% de descuento especial.</small>
   </div>
 
-  <button style="width:100%; background:#f4c430; color:#111; padding:15px; font-size:20px; font-weight:bold; border:none; border-radius:12px;">
-    Reservar y Pagar Anticipo
+  <button onclick="confirmarReserva()" style="width:100%; background:#f4c430; color:#111; padding:15px; font-size:20px; font-weight:bold; border:none; border-radius:12px;">
+    Reservar por WhatsApp
   </button>
 
 </section>
@@ -219,22 +194,23 @@ if (tipoReserva === "Tour guiado") {
 <script>
 function actualizarPrecio() {
   const vehiculo = document.getElementById("vehiculo").value;
+  const tipoReserva = document.getElementById("tipoReserva").value;
   const duracion = Number(document.getElementById("duracion").value);
 
-  let precioHora = 0;
-
-  if (vehiculo === "Commander") {
-    precioHora = 1800;
-  }
-
-  if (vehiculo === "Defender") {
-    precioHora = 1300;
-  }
-
-  if (!vehiculo || !duracion) {
+  if (!vehiculo || !tipoReserva || !duracion) {
     document.getElementById("precioFinal").innerHTML = "$0 MXN";
     document.getElementById("descuentoTexto").innerHTML = "";
     return;
+  }
+
+  let precioHora = 0;
+
+  if (tipoReserva === "Tour guiado") {
+    if (vehiculo === "Commander") precioHora = 2100;
+    if (vehiculo === "Defender") precioHora = 1800;
+  } else {
+    if (vehiculo === "Commander") precioHora = 1800;
+    if (vehiculo === "Defender") precioHora = 1300;
   }
 
   let total = precioHora * duracion;
@@ -249,74 +225,26 @@ function actualizarPrecio() {
   document.getElementById("precioFinal").innerHTML =
     "$" + total.toLocaleString("es-MX") + " MXN";
 }
-</script>
-<div style="margin-top:25px; background:#111; padding:20px; border-radius:12px; max-height:250px; overflow-y:auto; font-size:14px; line-height:1.6;">
 
-<h3 style="color:#f4c430;">Términos y Condiciones</h3>
-
-<p><strong>1. Reservaciones y Pagos</strong><br>
-Todas las reservaciones requieren un anticipo para ser confirmadas.<br>
-El anticipo corresponde al monto indicado en la reservación y deberá realizarse mediante pago en línea o transferencia autorizada.<br>
-El resto del pago deberá liquidarse antes de iniciar el tour.</p>
-
-<p><strong>2. Políticas de Cancelación</strong><br>
-Cancelaciones con más de 48 horas de anticipación podrán reprogramarse sin penalización.<br>
-Cancelaciones con menos de 48 horas podrán perder el anticipo.<br>
-En caso de clima extremo o causas operativas, la empresa podrá reprogramar la experiencia.</p>
-
-<p><strong>3. Responsabilidad del Cliente</strong><br>
-El conductor deberá presentar identificación oficial vigente y aceptar la carta responsiva antes de iniciar la actividad.<br>
-El cliente acepta participar bajo su propia responsabilidad y seguir todas las instrucciones de seguridad.</p>
-
-<p><strong>4. Restricciones</strong><br>
-No podrán conducir personas bajo efectos de alcohol, drogas o sustancias que afecten la capacidad de manejo.<br>
-La empresa podrá cancelar el tour sin reembolso si detecta conducta peligrosa.</p>
-
-<p><strong>5. Daños y Uso del Vehículo</strong><br>
-El cliente será responsable por daños ocasionados por mal uso, negligencia o incumplimiento de instrucciones.<br>
-Cualquier daño podrá generar cargos adicionales.</p>
-
-<p><strong>6. Seguridad</strong><br>
-El uso de casco y equipo de seguridad es obligatorio durante toda la experiencia.</p>
-
-<p><strong>7. Aceptación</strong><br>
-Al realizar la reservación y pago, el cliente acepta automáticamente estos términos y condiciones.</p>
-
-</div>
-
-<div style="margin-top:15px; display:flex; align-items:center; gap:10px;">
-  <input type="checkbox" id="acepto">
-  <label for="acepto" style="font-size:14px;">
-    He leído y acepto los términos y condiciones.
-  </label>
-</div>
-<script>
 function confirmarReserva() {
-  const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value;
   const fecha = document.getElementById("fecha").value;
   const hora = document.getElementById("hora").value;
   const vehiculo = document.getElementById("vehiculo").value;
+  const tipoReserva = document.getElementById("tipoReserva").value;
+  const duracion = document.getElementById("duracion").value;
   const personas = document.getElementById("personas").value;
+  const total = document.getElementById("precioFinal").innerText;
 
-  const acepto = document.getElementById("acepto").checked;
-
-if (!nombre || !telefono || !fecha || !hora || !vehiculo || !personas || !acepto) {
-    alert("Por favor llena todos los campos para continuar.");
+  if (!fecha || !hora || !vehiculo || !tipoReserva || !duracion || !personas) {
+    alert("Por favor llena todos los campos.");
     return;
   }
 
-  const mensaje = `Hola, quiero reservar una aventura RZR.%0A%0ANombre: ${nombre}%0AWhatsApp: ${telefono}%0AFecha: ${fecha}%0AHora: ${hora}%0AVehículo: ${vehiculo}%0APersonas: ${personas}%0AAnticipo: $1,500 MXN`;
+  const mensaje = `Hola, quiero reservar:%0AFecha: ${fecha}%0AHora: ${hora}%0AVehículo: ${vehiculo}%0ATipo: ${tipoReserva}%0ADuración: ${duracion} horas%0APersonas: ${personas}%0ATotal: ${total}`;
 
   window.open(`https://wa.me/523223694727?text=${mensaje}`, "_blank");
-
-  setTimeout(() => {
-    window.open("AQUI_TU_LINK_DE_MERCADO_PAGO", "_blank");
-  }, 1000);
 }
 </script>
-<body>
-
 <nav>
 <div>
 <a href="#">Inicio</a>
