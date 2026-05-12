@@ -129,7 +129,82 @@ color:#777;
 
 </style>
 </head>
+<section id="reservas" style="padding:40px 20px; background:#1f2a1f; color:white; font-family:Arial, sans-serif;">
+  <div style="max-width:700px; margin:auto; background:#2f3b2f; padding:25px; border-radius:18px; box-shadow:0 0 20px #000;">
+    
+    <h2 style="text-align:center; color:#f4c430;">Reserva tu Aventura RZR</h2>
+    <p style="text-align:center;">Selecciona fecha, horario y paga tu anticipo para confirmar.</p>
 
+    <label>Nombre completo:</label>
+    <input id="nombre" type="text" placeholder="Tu nombre" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+
+    <label>WhatsApp:</label>
+    <input id="telefono" type="tel" placeholder="Ej. 3223694727" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+
+    <label>Fecha de reserva:</label>
+    <input id="fecha" type="date" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+
+    <label>Horario:</label>
+    <select id="hora" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+      <option value="">Selecciona horario</option>
+      <option>9:00 AM</option>
+      <option>11:00 AM</option>
+      <option>1:00 PM</option>
+      <option>3:00 PM</option>
+      <option>5:00 PM</option>
+    </select>
+
+    <label>Vehículo / Experiencia:</label>
+    <select id="vehiculo" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+      <option value="">Selecciona opción</option>
+      <option>RZR 3 plazas</option>
+      <option>RZR 4 plazas</option>
+      <option>Can-Am Commander 4 plazas</option>
+      <option>Tour privado premium</option>
+    </select>
+
+    <label>Número de personas:</label>
+    <input id="personas" type="number" min="1" max="4" placeholder="Ej. 2" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+
+    <div style="background:#111; padding:15px; border-radius:12px; margin:20px 0;">
+      <h3 style="color:#f4c430; margin:0;">Anticipo para confirmar:</h3>
+      <p style="font-size:24px; margin:8px 0;">$1,500 MXN</p>
+      <small>El resto se liquida el día del tour.</small>
+    </div>
+
+    <button onclick="confirmarReserva()" style="width:100%; background:#f4c430; color:#111; padding:15px; font-size:18px; font-weight:bold; border:none; border-radius:12px; cursor:pointer;">
+      Reservar y Pagar Anticipo
+    </button>
+
+    <p style="font-size:13px; text-align:center; margin-top:15px;">
+      Al reservar aceptas nuestros términos, políticas de cancelación y carta responsiva.
+    </p>
+  </div>
+</section>
+
+<script>
+function confirmarReserva() {
+  const nombre = document.getElementById("nombre").value;
+  const telefono = document.getElementById("telefono").value;
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const vehiculo = document.getElementById("vehiculo").value;
+  const personas = document.getElementById("personas").value;
+
+  if (!nombre || !telefono || !fecha || !hora || !vehiculo || !personas) {
+    alert("Por favor llena todos los campos para continuar.");
+    return;
+  }
+
+  const mensaje = `Hola, quiero reservar una aventura RZR.%0A%0ANombre: ${nombre}%0AWhatsApp: ${telefono}%0AFecha: ${fecha}%0AHora: ${hora}%0AVehículo: ${vehiculo}%0APersonas: ${personas}%0AAnticipo: $1,500 MXN`;
+
+  window.open(`https://wa.me/523223694727?text=${mensaje}`, "_blank");
+
+  setTimeout(() => {
+    window.open("AQUI_TU_LINK_DE_MERCADO_PAGO", "_blank");
+  }, 1000);
+}
+</script>
 <body>
 
 <nav>
