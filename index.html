@@ -156,15 +156,38 @@ color:#777;
 
     <label>Vehículo / Experiencia:</label>
 
-<select id="vehiculo" onchange="actualizarPrecio()" style="width:100%; padding:12px; margin:8px 0 15px; border-radius:8px; border:none;">
+<script>
+function actualizarPrecio() {
+  const vehiculo = document.getElementById("vehiculo").value;
+  const duracion = parseInt(document.getElementById("duracion").value);
 
-<option value="">Selecciona vehículo</option>
+  let precioHora = 0;
 
-<option>Can-Am Commander 4 plazas</option>
+  if (vehiculo.includes("Commander")) {
+    precioHora = 1800;
+  } else if (vehiculo.includes("Defender")) {
+    precioHora = 1300;
+  }
 
-<option>Can-Am Defender HD9</option>
+  if (!precioHora || !duracion) {
+    document.getElementById("precioFinal").innerHTML = "$0 MXN";
+    return;
+  }
 
-</select>
+  let total = precioHora * duracion;
+  let descuento = "";
+
+  if (duracion > 5) {
+    total = total * 0.70;
+    descuento = "🔥 Descuento especial del 30% aplicado";
+  }
+
+  document.getElementById("precioFinal").innerHTML =
+    "$" + total.toLocaleString("es-MX") + " MXN";
+
+  document.getElementById("descuentoTexto").innerHTML = descuento;
+}
+</script>
 
 
 
